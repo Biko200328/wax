@@ -593,6 +593,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectTime: 1
   recoveryNum: 0.5
+  sptite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  gauge: {fileID: 2133317927}
 --- !u!1 &980404719
 GameObject:
   m_ObjectHideFlags: 0

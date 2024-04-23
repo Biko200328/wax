@@ -14,18 +14,25 @@ public class PlayerCollect : MonoBehaviour
 	[Header("回復量")]
 	[SerializeField] float recoveryNum;
 
+	SpriteRenderer spriteRenderer;
+	Sprite box;
+	[SerializeField] Sprite sptite;
+
+	[SerializeField] SpriteRenderer gauge;
+
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		box = spriteRenderer.sprite;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if(Input.GetAxis("LT") != 0)
+		if(isCollect == false)
 		{
-			if(isCollect == false)
+			if(Input.GetAxis("LT") != 0)
 			{
 				//範囲内にいるロウを探す
 				GameObject[] waxs = GameObject.FindGameObjectsWithTag("collectWax");
@@ -33,6 +40,7 @@ public class PlayerCollect : MonoBehaviour
 				if(waxs.Length >= 1)
 				{
 					isCollect = true;
+					time = 0;
 				}
 
 				//そのロウを回収する
@@ -52,10 +60,24 @@ public class PlayerCollect : MonoBehaviour
 		{
 			time += Time.deltaTime;
 
+			//スプライトを変更
+			spriteRenderer.sprite = sptite;
+			gauge.sprite = sptite;
+			//手前になるように
+			spriteRenderer.sortingOrder = 2;
+			//色を変更
+			spriteRenderer.color = Color.green;
+
+			//初期化
 			if(time >= collectTime)
 			{
+				//スプライト周り
+				spriteRenderer.sprite = box;
+				gauge.sprite = box;
+				spriteRenderer.sortingOrder = 0;
+				spriteRenderer.color = Color.white;
+
 				isCollect = false;
-				time = 0;
 			}
 		}
 	}
