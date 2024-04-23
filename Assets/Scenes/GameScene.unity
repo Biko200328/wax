@@ -571,9 +571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5124127bd54c323429536349be13adf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolTime: 0.2
+  coolTime: 0.4
   attackPos: {x: 1, y: 1.5}
-  attackTime: 0.4
   attackNum: 20
   reduceNum: 10
   attackObj: {fileID: 862417585606669441, guid: a4eb8ffd84d5b2c4fbdf77581f6afb21, type: 3}

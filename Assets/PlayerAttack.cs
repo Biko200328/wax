@@ -7,14 +7,12 @@ public class PlayerAttack : MonoBehaviour
 {
 	bool isAttack;
 	float time;
-	[Header("次の攻撃が出るまでの時間")]
+
+	[Header("目的地までの時間(着くまで再度攻撃不可)")]
 	[SerializeField] float coolTime = 0.2f;
 
 	[Header("攻撃の範囲")]
 	[SerializeField] Vector2 attackPos;
-
-	[Header("目的地までの時間")]
-	[SerializeField] float attackTime;
 
 	[Header("出る個数")]
 	[SerializeField] int attackNum;
@@ -26,11 +24,12 @@ public class PlayerAttack : MonoBehaviour
 	[SerializeField] GameObject attackObj;
 	[SerializeField] GameObject baseObj;
 	[SerializeField] Wax waxSqr;
+	PlayerCollect collectSqr;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		collectSqr = GetComponent<PlayerCollect>();
 	}
 
 	// Update is called once per frame
@@ -39,11 +38,12 @@ public class PlayerAttack : MonoBehaviour
 		//RTを押したとき
 		if(Input.GetAxis("RT") != 0)
 		{
-			//攻撃できる状態か(クールタイム外),ロウがまだあるか
-			if(isAttack == false && waxSqr.HaveWax())
+			//攻撃できる状態か(クールタイム外),ロウがまだあるか,回収中じゃない場合
+			if(isAttack == false && waxSqr.HaveWax() && collectSqr.GetIsCollect() == false)
 			{
 				//クールタイム突入
 				isAttack = true;
+				time = 0;
 
 				//ロウを減らす
 				waxSqr.ReduceWax(reduceNum);
@@ -59,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
 					romdomVec.y = baseObj.transform.position.y + Random.Range(-attackPos.y, attackPos.y);
 
 					//動かすための数値を代入
-					objSqr.Attack(attackTime, transform.position, romdomVec);
+					objSqr.Attack(coolTime, transform.position, romdomVec);
 				}
 			}
 		}
@@ -74,8 +74,12 @@ public class PlayerAttack : MonoBehaviour
 			if (time >= coolTime)
 			{
 				isAttack = false;
-				time = 0;
 			}
 		}
+	}
+
+	public bool GetisAttack()
+	{
+		return isAttack;
 	}
 }

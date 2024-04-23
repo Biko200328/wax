@@ -20,17 +20,21 @@ public class PlayerCollect : MonoBehaviour
 
 	[SerializeField] SpriteRenderer gauge;
 
+	PlayerAttack attackSqr;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		box = spriteRenderer.sprite;
+		attackSqr = GetComponent<PlayerAttack>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if(isCollect == false)
+		//クールタイム中ではない,攻撃中ではない
+		if(isCollect == false && attackSqr.GetisAttack() == false)
 		{
 			if(Input.GetAxis("LT") != 0)
 			{
