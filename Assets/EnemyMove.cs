@@ -13,6 +13,8 @@ public class EnemyMove : MonoBehaviour
 
 	Vector2 randomSpeed;
 
+	[SerializeField] EnemyHp enemyHp;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -37,19 +39,32 @@ public class EnemyMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		time += Time.deltaTime;
-		if(time >= moveChangeTime)
+		if (enemyHp.GetIsDead() == false) 
 		{
-			randomSpeed.x = Random.Range(-1, 1);
-			randomSpeed.y = Random.Range(-1, 1);
+			time += Time.deltaTime;
 
-			randomSpeed = randomSpeed.normalized;
-			var v = rb.velocity;
+			if (time >= moveChangeTime)
+			{
+				//ベクトルを作成
+				randomSpeed.x = Random.Range(-1, 1);
+				randomSpeed.y = Random.Range(-1, 1);
 
-			v = randomSpeed * speed;
+				randomSpeed = randomSpeed.normalized;
 
-			rb.velocity = v;
-			time = 0;
+
+				var v = rb.velocity;
+
+				//作成したベクトルにスピードをかけて移動させる
+				v = randomSpeed * speed;
+
+				rb.velocity = v;
+				time = 0;
+			}
 		}
+		else
+		{
+			rb.velocity = Vector2.zero;
+		}
+		
 	}
 }

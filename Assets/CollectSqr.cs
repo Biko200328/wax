@@ -35,6 +35,9 @@ public class CollectSqr : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		collision.gameObject.tag = "wax";
+		if (collision.gameObject.tag == "collectWax")
+		{
+			collision.gameObject.tag = "wax";
+		}
 	}
 }

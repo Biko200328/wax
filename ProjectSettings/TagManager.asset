@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - wax
   - collectWax
+  - Enemy
   layers:
   - Default
   - TransparentFX

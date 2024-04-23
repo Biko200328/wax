@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4269925475204315460}
   - component: {fileID: 743969729882765296}
   - component: {fileID: 2643316470006043675}
-  - component: {fileID: 7579596612554411063}
   - component: {fileID: 7527683846289089331}
+  - component: {fileID: 7579596612554411063}
   m_Layer: 0
   m_Name: attackObj
   m_TagString: wax
@@ -106,18 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7579596612554411063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862417585606669441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 065575ff58ccb9145bc15e91eaaa29ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &7527683846289089331
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +122,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7579596612554411063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862417585606669441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065575ff58ccb9145bc15e91eaaa29ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

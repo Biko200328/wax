@@ -88,4 +88,16 @@ public class AttackObjMove : MonoBehaviour
 		movedPos = maxPos;
 		recoveryNum = num;
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if(isMove)
+		{
+			if(collision.gameObject.tag == "Enemy")
+			{
+				EnemyHp enemyHp = collision.transform.GetChild(1).gameObject.GetComponent<EnemyHp>();
+				enemyHp.Damage(1.0f);
+			}
+		}
+	}
 }
