@@ -44,27 +44,31 @@ public class PlayerMove : MonoBehaviour
 		}
 
 		//左のアナログスティックが倒れている角度を求める
-		var v2 = Input.GetAxis("cVerticalL");
-		var h2 = Input.GetAxis("cHorizontalL");
+		var vl2 = Input.GetAxis("cVerticalL");
+		var hl2 = Input.GetAxis("cHorizontalL");
 
-		var degree = Mathf.Atan2(v2, h2) * Mathf.Rad2Deg;
+		//左のアナログスティックが倒れている角度を求める
+		var vr2 = Input.GetAxis("cVerticalR");
+		var hr2 = Input.GetAxis("cHorizontalR");
+
+		var degree = Mathf.Atan2(vr2, hr2) * Mathf.Rad2Deg;
 
 		if (degree < 0)
 		{
 			degree += 360;
 		}
 
-		if (v2 == 0 && h2 == 0)
+		if (vr2 == 0 && hr2 == 0)
 		{
 			degree = keepDegree;
 		}
-		else if (v2 >= 0.1f || v2 <= -0.1f || h2 >= 0.1f || h2 <= -0.1f)
+		else if (vr2 >= 0.1f || vr2 <= -0.1f || hr2 >= 0.1f || hr2 <= -0.1f)
 		{
 			keepDegree = degree;
 		}
 
-		v.y = v2 * speed;
-		v.x = h2 * speed;
+		v.y = vl2 * speed;
+		v.x = hl2 * speed;
 
 		//回収中は動けない
 		if(playerCollectSqr.GetIsCollect() == false)
