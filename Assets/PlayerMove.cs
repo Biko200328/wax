@@ -11,6 +11,8 @@ public class PlayerMove : MonoBehaviour
 
 	float keepDegree;
 
+	[SerializeField] PlayerCollect playerCollectSqr;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -64,7 +66,11 @@ public class PlayerMove : MonoBehaviour
 		v.y = v2 * speed;
 		v.x = h2 * speed;
 
-		rb.velocity = v;
+		//‰ñŽû’†‚Í“®‚¯‚È‚¢
+		if(playerCollectSqr.GetIsCollect() == false)
+		{
+			rb.velocity = v;
+		}
 
 		// transform‚ðŽæ“¾
 		Transform myTransform = this.transform;

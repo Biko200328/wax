@@ -5,16 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Fade
-  - Red
-  - Green
-  - Blue
-  - Enemy
   - GameManager
-  - UICanvas
-  - indicatorCol
-  - Wave
-  - Combo
-  - indicatorCol2
+  - wax
+  - collectWax
   layers:
   - Default
   - TransparentFX

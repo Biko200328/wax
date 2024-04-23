@@ -12,6 +12,8 @@ public class AttackObjMove : MonoBehaviour
 
 	bool isMove;
 
+	bool isCollect;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -26,14 +28,36 @@ public class AttackObjMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		//発射
 		if (isMove)
 		{
 			time += Time.deltaTime;
+
+			//指定された位置まで移動
 			transform.position = QuartOut(time, totalTime, minPos, movedPos);
 
+			//初期化
 			if (time >= totalTime)
 			{
 				isMove = false;
+				time = 0;
+			}
+		}
+
+		//回収
+		if(isCollect)
+		{
+			time += Time.deltaTime;
+
+			//指定された位置まで移動
+			transform.position = QuartOut(time, totalTime, minPos, movedPos);
+
+			//初期化
+			if (time >= totalTime)
+			{
+				isCollect = false;
+				time = 0;
+				Destroy(this.gameObject);
 			}
 		}
 	}
@@ -50,6 +74,14 @@ public class AttackObjMove : MonoBehaviour
 		isMove = true;
 		totalTime = t;
 		minPos = nowPos;
+		movedPos = maxPos;
+	}
+
+	public void Collect(float t, Vector2 maxPos)
+	{
+		isCollect = true;
+		totalTime = t;
+		minPos = transform.position;
 		movedPos = maxPos;
 	}
 }
