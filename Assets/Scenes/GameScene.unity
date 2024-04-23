@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectTime: 1
+  recoveryNum: 0.5
 --- !u!1 &980404719
 GameObject:
   m_ObjectHideFlags: 0

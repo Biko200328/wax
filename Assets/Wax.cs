@@ -41,6 +41,15 @@ public class Wax : MonoBehaviour
 		}
 	}
 
+	public void RecoveryWax(float num)
+	{
+		nowWax += num;
+		if(nowWax >= maxWax)
+		{
+			nowWax = maxWax;
+		}
+	}
+
 	/// <Summary>
 	/// ƒƒE‚ðŽ‚Á‚Ä‚¢‚éê‡‚Ítrue‚ð•Ô‚µ‚Ü‚·<br />
 	/// 

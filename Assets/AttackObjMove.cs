@@ -14,6 +14,7 @@ public class AttackObjMove : MonoBehaviour
 
 	bool isCollect;
 
+	float recoveryNum;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -57,6 +58,8 @@ public class AttackObjMove : MonoBehaviour
 			{
 				isCollect = false;
 				time = 0;
+				Wax waxSqr = GameObject.Find("Gauge").GetComponent<Wax>();
+				waxSqr.RecoveryWax(recoveryNum);
 				Destroy(this.gameObject);
 			}
 		}
@@ -77,11 +80,12 @@ public class AttackObjMove : MonoBehaviour
 		movedPos = maxPos;
 	}
 
-	public void Collect(float t, Vector2 maxPos)
+	public void Collect(float t, Vector2 maxPos,float num)
 	{
 		isCollect = true;
 		totalTime = t;
 		minPos = transform.position;
 		movedPos = maxPos;
+		recoveryNum = num;
 	}
 }

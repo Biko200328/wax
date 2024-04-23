@@ -11,6 +11,9 @@ public class PlayerCollect : MonoBehaviour
 	[Header("‰ñŽû‚É‚©‚©‚éŠÔ")]
 	[SerializeField] float collectTime;
 
+	[Header("‰ñ•œ—Ê")]
+	[SerializeField] float recoveryNum;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -33,7 +36,7 @@ public class PlayerCollect : MonoBehaviour
 				for (int i = 0; i < waxs.Length; i++) 
 				{
 					AttackObjMove attackObjSqr = waxs[i].GetComponent<AttackObjMove>();
-					attackObjSqr.Collect(collectTime, transform.position);
+					attackObjSqr.Collect(collectTime, transform.position,recoveryNum);
 				}
 			}
 		}
