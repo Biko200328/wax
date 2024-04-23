@@ -27,10 +27,13 @@ public class PlayerCollect : MonoBehaviour
 		{
 			if(isCollect == false)
 			{
-				isCollect = true;
-
 				//”ÍˆÍ“à‚É‚¢‚éƒƒE‚ğ’T‚·
 				GameObject[] waxs = GameObject.FindGameObjectsWithTag("collectWax");
+
+				if(waxs.Length >= 1)
+				{
+					isCollect = true;
+				}
 
 				//‚»‚ÌƒƒE‚ğ‰ñû‚·‚é
 				for (int i = 0; i < waxs.Length; i++) 
