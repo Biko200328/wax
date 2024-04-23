@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Fade
+  - Red
+  - Green
+  - Blue
+  - Enemy
+  - GameManager
+  - UICanvas
+  - indicatorCol
+  - Wave
+  - Combo
+  - indicatorCol2
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Player
+  - Water
+  - UI
+  - Traphole
+  - Red
+  - Green
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 199951177
+    locked: 0
+  - name: Floor
+    uniqueID: 3412296565
+    locked: 0
+  - name: Player
+    uniqueID: 1926126367
+    locked: 0
+  - name: frame
+    uniqueID: 129871869
+    locked: 0
