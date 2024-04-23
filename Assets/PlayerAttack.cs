@@ -22,8 +22,10 @@ public class PlayerAttack : MonoBehaviour
 	[Header("ロウの減る量")]
 	[SerializeField] float reduceNum;
 
+	[Space(50)]
 	[SerializeField] GameObject attackObj;
 	[SerializeField] GameObject baseObj;
+	[SerializeField] Wax waxSqr;
 
 	// Start is called before the first frame update
 	void Start()
@@ -34,12 +36,19 @@ public class PlayerAttack : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		//RTを押したとき
 		if(Input.GetAxis("RT") != 0)
 		{
-			if(isAttack == false)
+			//攻撃できる状態か(クールタイム外),ロウがまだあるか
+			if(isAttack == false && waxSqr.HaveWax())
 			{
+				//クールタイム突入
 				isAttack = true;
 
+				//ロウを減らす
+				waxSqr.ReduceWax(reduceNum);
+
+				//指定した数値分ロウを生成
 				for (int i = 0; i < attackNum; i++)
 				{
 					AttackObjMove objSqr = Instantiate(attackObj, transform.position, Quaternion.identity).GetComponent<AttackObjMove>();
@@ -49,6 +58,7 @@ public class PlayerAttack : MonoBehaviour
 					romdomVec.x = baseObj.transform.position.x + Random.Range(-attackPos.x, attackPos.x);
 					romdomVec.y = baseObj.transform.position.y + Random.Range(-attackPos.y, attackPos.y);
 
+					//動かすための数値を代入
 					objSqr.Attack(attackTime, transform.position, romdomVec);
 				}
 			}
@@ -57,6 +67,7 @@ public class PlayerAttack : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		//クールタイムの計算
 		if (isAttack)
 		{
 			time += Time.deltaTime;
