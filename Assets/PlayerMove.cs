@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
 
 	[SerializeField] PlayerCollect playerCollectSqr;
 
+	public float degree;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -51,7 +53,7 @@ public class PlayerMove : MonoBehaviour
 		var vr2 = Input.GetAxis("cVerticalR");
 		var hr2 = Input.GetAxis("cHorizontalR");
 
-		var degree = Mathf.Atan2(vr2, hr2) * Mathf.Rad2Deg;
+		degree = Mathf.Atan2(vr2, hr2) * Mathf.Rad2Deg;
 
 		if (degree < 0)
 		{
