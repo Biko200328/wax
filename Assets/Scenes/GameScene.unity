@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 554766536}
   - component: {fileID: 554766537}
   - component: {fileID: 554766538}
+  - component: {fileID: 554766539}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -681,14 +682,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554766530}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ea9e25823382fc4e88094e9586ad5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5898108809027190104, guid: fede75a74fc50dd43870411cb4ecf14c, type: 3}
-  bulletDeleteTime: 3
+  bulletDeleteTime: 1
   bulletSpeed: 30
+--- !u!114 &554766539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554766530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded48cfff30e891408bb0d2f4843fb9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 0
+  degree: 0
+  deathTime: 0
 --- !u!1 &676426947
 GameObject:
   m_ObjectHideFlags: 3
@@ -1053,6 +1069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914026611}
   - component: {fileID: 914026610}
+  - component: {fileID: 914026612}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1086,6 +1103,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &914026612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914026609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d68256980b64b04cb910ac4a3e20283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &980404719
 GameObject:
   m_ObjectHideFlags: 0

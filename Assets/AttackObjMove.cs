@@ -50,7 +50,7 @@ public class AttackObjMove : MonoBehaviour
 			time += Time.deltaTime;
 
 			//指定された位置まで移動
-			transform.position = QuartOut(time, totalTime, minPos, movedPos);
+			transform.position = MyEasing.QuartOut(time, totalTime, minPos, movedPos);
 
 			//初期化
 			if (time >= totalTime)
@@ -66,7 +66,7 @@ public class AttackObjMove : MonoBehaviour
 			time += Time.deltaTime;
 
 			//指定された位置まで移動
-			transform.position = QuartOut(time, totalTime, minPos, movedPos);
+			transform.position = MyEasing.QuartOut(time, totalTime, minPos, movedPos);
 
 			//初期化
 			if (time >= totalTime)
@@ -80,12 +80,12 @@ public class AttackObjMove : MonoBehaviour
 		}
 	}
 
-	public static Vector2 QuartOut(float t, float totaltime, Vector2 min, Vector2 max)
-	{
-		max -= min;
-		t = t / totaltime - 1;
-		return -max * (t * t * t * t - 1) + min;
-	}
+	//public static Vector2 QuartOut(float t, float totaltime, Vector2 min, Vector2 max)
+	//{
+	//	max -= min;
+	//	t = t / totaltime - 1;
+	//	return -max * (t * t * t * t - 1) + min;
+	//}
 
 	public void Attack(float t, Vector2 nowPos, Vector2 maxPos)
 	{
