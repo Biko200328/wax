@@ -22,6 +22,14 @@ public class EnemyMove : MonoBehaviour
 
 	Vector3 toDirection;
 
+	bool isChase;
+
+	[SerializeField] float lookTotalTime = 1.0f;
+	float lookTimer;
+
+	[SerializeField] GameObject bikkuri;
+	GameObject mark;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -43,25 +51,37 @@ public class EnemyMove : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(isLookPlayer)
+		if (enemyHp.GetIsDead() == false)
 		{
-			// 対象物へのベクトルを算出
-			toDirection = playerObj.transform.position - transform.position;
-			// 対象物へ回転する
-			transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
+			if (isLookPlayer)
+			{
+				// 対象物へのベクトルを算出
+				toDirection = playerObj.transform.position - transform.position;
+				// 対象物へ回転する
+				transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
+			}
 		}
-		
 	}
 
 	private void FixedUpdate()
 	{
-
 		if (enemyHp.GetIsDead() == false)
 		{
 			//プレイヤー発見時は追跡する
 			if (isLookPlayer)
 			{
-				transform.position += toDirection.normalized * lookSpeed;
+				lookTimer += Time.deltaTime;
+
+				if(lookTimer >= lookTotalTime)
+				{
+					isChase = true;
+					Destroy(mark);
+				}
+
+				if(isChase)
+				{
+					transform.position += toDirection.normalized * lookSpeed;
+				}
 			}
 			//プレイヤー未発見時はランダムに動かす
 			else
@@ -97,6 +117,26 @@ public class EnemyMove : MonoBehaviour
 
 	public void SetIsLook(bool flag)
 	{
-		isLookPlayer = flag;
+		if(enemyHp.GetIsDead() == false)
+		{
+			isLookPlayer = flag;
+
+			if (flag)
+			{
+				rb.velocity = Vector2.zero;
+				mark = Instantiate(bikkuri, transform.position, Quaternion.identity);
+				mark.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+			}
+
+			if (flag == false)
+			{
+				lookTimer = 0;
+				isChase = false;
+				if (mark != null)
+				{
+					Destroy(mark);
+				}
+			}
+		}
 	}
 }
