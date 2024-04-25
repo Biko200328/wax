@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7168722456145390757}
   - component: {fileID: 5468977043061898825}
-  - component: {fileID: 9065466138009029209}
+  - component: {fileID: 7627210817340474169}
   - component: {fileID: 872547764735644123}
   m_Layer: 0
   m_Name: wallChecl
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -220,8 +220,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &9065466138009029209
-CircleCollider2D:
+--- !u!70 &7627210817340474169
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -233,9 +233,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: 0.00000023841858, y: 0}
+  m_Size: {x: 1.0000001, y: 0.68}
+  m_Direction: 1
 --- !u!114 &872547764735644123
 MonoBehaviour:
   m_ObjectHideFlags: 0

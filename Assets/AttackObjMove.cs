@@ -22,6 +22,8 @@ public class AttackObjMove : MonoBehaviour
 
 	Vector3 toDirection;
 
+	public bool isBeforeEnemy;	
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -31,10 +33,13 @@ public class AttackObjMove : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		// 対象物へのベクトルを算出
-		toDirection = playerObj.transform.position - transform.position;
-		// 対象物へ回転する
-		transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
+		if (isBeforeEnemy == false)
+		{
+			// 対象物へのベクトルを算出
+			toDirection = playerObj.transform.position - transform.position;
+			// 対象物へ回転する
+			transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
+		}
 	}
 
 	private void FixedUpdate()
@@ -112,6 +117,7 @@ public class AttackObjMove : MonoBehaviour
 			if(collision.gameObject.tag == "Wall")
 			{
 				isMove = false;
+				time = 0;
 			}
 		}
 
@@ -120,6 +126,7 @@ public class AttackObjMove : MonoBehaviour
 			if (collision.gameObject.tag == "Wall")
 			{
 				isCollect = false;
+				time = 0;
 			}
 		}
 	}

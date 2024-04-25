@@ -14,6 +14,8 @@ public class EnemyHp : MonoBehaviour
 	public float timer;
 	[SerializeField] float mutekiTime;
 
+	[SerializeField] BoxCollider2D coll;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -55,8 +57,15 @@ public class EnemyHp : MonoBehaviour
 				{
 					nowHp = 0;
 					isDead = true;
+					//タグを変更 吸収されるように
 					transform.root.gameObject.tag = "wax";
-					transform.root.gameObject.AddComponent<AttackObjMove>();
+
+					//ロウのスクリプトを親に追加
+					AttackObjMove Sqr = transform.root.gameObject.AddComponent<AttackObjMove>();
+					Sqr.isBeforeEnemy = true;
+
+					//コライダーをトリガーに
+					coll.isTrigger = true;
 				}
 			}
 		}

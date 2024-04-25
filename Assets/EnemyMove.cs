@@ -61,6 +61,14 @@ public class EnemyMove : MonoBehaviour
 				transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
 			}
 		}
+
+		if(enemyHp.GetIsDead() == true)
+		{
+			if (mark != null)
+			{
+				Destroy(mark);
+			}
+		}
 	}
 
 	private void FixedUpdate()
@@ -121,13 +129,17 @@ public class EnemyMove : MonoBehaviour
 		{
 			isLookPlayer = flag;
 
+			//見つけた時
 			if (flag)
 			{
+				//動きをとめる
 				rb.velocity = Vector2.zero;
+				//頭上に!マークを生成
 				mark = Instantiate(bikkuri, transform.position, Quaternion.identity);
 				mark.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
 			}
 
+			//リセットをかける
 			if (flag == false)
 			{
 				lookTimer = 0;
@@ -137,6 +149,10 @@ public class EnemyMove : MonoBehaviour
 					Destroy(mark);
 				}
 			}
+		}
+		else
+		{
+			isLookPlayer = false;
 		}
 	}
 }
