@@ -7,6 +7,9 @@ public class StickBullet : MonoBehaviour
 	public float bulletSpeed;
 	public float degree;
 
+	public float deathTime;
+	float timer;
+
 	Rigidbody2D rb;
 
 	// Start is called before the first frame update
@@ -34,5 +37,14 @@ public class StickBullet : MonoBehaviour
 		v = gameObject.transform.rotation * new Vector3(bulletSpeed, 0, 0);
 		
 		rb.velocity = v;
+	}
+
+	private void FixedUpdate()
+	{
+		timer += Time.deltaTime;
+		if(timer >= deathTime)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }

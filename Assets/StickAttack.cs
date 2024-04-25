@@ -9,6 +9,7 @@ public class StickAttack : MonoBehaviour
 
 	PlayerMove moveSqr;
 
+	[SerializeField] float bulletDeleteTime;
 	[SerializeField] float bulletSpeed;
 
 	// Start is called before the first frame update
@@ -25,6 +26,7 @@ public class StickAttack : MonoBehaviour
 			StickBullet bulletSqr = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<StickBullet>();
 			bulletSqr.bulletSpeed = bulletSpeed;
 			bulletSqr.degree = moveSqr.degree;
+			bulletSqr.deathTime = bulletDeleteTime;
 		}
 	}
 }
