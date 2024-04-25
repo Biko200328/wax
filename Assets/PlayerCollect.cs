@@ -51,7 +51,10 @@ public class PlayerCollect : MonoBehaviour
 				for (int i = 0; i < waxs.Length; i++) 
 				{
 					AttackObjMove attackObjSqr = waxs[i].GetComponent<AttackObjMove>();
-					attackObjSqr.Collect(collectTime, transform.position,recoveryNum);
+					if(attackObjSqr.GetIsWall() == false)
+					{
+						attackObjSqr.Collect(collectTime, transform.position, recoveryNum);
+					}
 				}
 			}
 		}

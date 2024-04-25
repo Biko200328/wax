@@ -9,6 +9,9 @@ TagManager:
   - wax
   - collectWax
   - Enemy
+  - indicatorCol2
+  - indicatorCol
+  - Wall
   layers:
   - Default
   - TransparentFX

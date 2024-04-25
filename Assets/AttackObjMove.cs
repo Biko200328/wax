@@ -15,16 +15,26 @@ public class AttackObjMove : MonoBehaviour
 	bool isCollect;
 
 	float recoveryNum;
+
+	[SerializeField] bool isWall;
+
+	GameObject playerObj;
+
+	Vector3 toDirection;
+
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		playerObj = GameObject.Find("Player");
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		
+		// 対象物へのベクトルを算出
+		toDirection = playerObj.transform.position - transform.position;
+		// 対象物へ回転する
+		transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
 	}
 
 	private void FixedUpdate()
@@ -98,6 +108,30 @@ public class AttackObjMove : MonoBehaviour
 				EnemyHp enemyHp = collision.transform.GetChild(1).gameObject.GetComponent<EnemyHp>();
 				enemyHp.Damage(1.0f);
 			}
+
+			if(collision.gameObject.tag == "Wall")
+			{
+				isMove = false;
+			}
 		}
+
+		if(isCollect)
+		{
+			if (collision.gameObject.tag == "Wall")
+			{
+				isCollect = false;
+			}
+		}
+	}
+
+	public bool GetIsWall()
+	{
+		return isWall;
+	}
+
+
+	public void SetIsWall(bool flag)
+	{
+		isWall = flag;
 	}
 }
