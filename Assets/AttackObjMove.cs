@@ -66,7 +66,7 @@ public class AttackObjMove : MonoBehaviour
 			time += Time.deltaTime;
 
 			//Žw’è‚³‚ê‚½ˆÊ’u‚Ü‚ÅˆÚ“®
-			transform.position = MyEasing.QuartOut(time, totalTime, minPos, movedPos);
+			transform.position = MyEasing.QuartOut(time, totalTime, minPos, playerObj.transform.position);
 
 			//‰Šú‰»
 			if (time >= totalTime)
