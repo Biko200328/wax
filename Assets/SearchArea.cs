@@ -5,6 +5,8 @@ using UnityEngine;
 public class SearchArea : MonoBehaviour
 {
 	[SerializeField] EnemyMove enemyMove;
+
+	[SerializeField] EnemyHp hpSqr;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -14,7 +16,13 @@ public class SearchArea : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+		if(hpSqr != null)
+		{
+			if (hpSqr.GetIsDead())
+			{
+				Destroy(this.gameObject);
+			}
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

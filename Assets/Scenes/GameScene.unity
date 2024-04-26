@@ -975,7 +975,7 @@ MonoBehaviour:
   isDead: 0
   isDamage: 0
   timer: 0
-  mutekiTime: 0.5
+  mutekiTime: 0.4
   coll: {fileID: 1896465191}
 --- !u!1 &893469384
 GameObject:
@@ -1260,6 +1260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMove: {fileID: 1896465187}
+  hpSqr: {fileID: 735950034}
 --- !u!58 &1027484439
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1668,6 +1669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMove: {fileID: 680651929}
+  hpSqr: {fileID: 0}
 --- !u!58 &1639666692
 CircleCollider2D:
   m_ObjectHideFlags: 0
