@@ -23,7 +23,7 @@ public class EnemyMove : MonoBehaviour
 	Vector3 toDirection;
 
 	bool isChase;
-
+	[SerializeField] float magnitude = 2.0f;
 	[SerializeField] float lookTotalTime = 1.0f;
 	float lookTimer;
 
@@ -88,7 +88,11 @@ public class EnemyMove : MonoBehaviour
 
 				if(isChase)
 				{
-					transform.position += toDirection.normalized * lookSpeed;
+					if(toDirection.magnitude >= magnitude)
+					{
+						transform.position += toDirection.normalized * lookSpeed;
+					}
+					
 				}
 			}
 			//プレイヤー未発見時はランダムに動かす

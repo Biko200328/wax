@@ -10,7 +10,7 @@ public class LongRangeEnemyMove : MonoBehaviour
 	[SerializeField] float speed;
 
 	[Header("x‚æ‚è‹ß‚¢‚È‚ç—£‚ê‚Ä y‚æ‚è‰“‚¢‚È‚ç‹ß‚Ã‚­")]
-	[SerializeField] Vector2 magunitude;
+	[SerializeField] Vector2 magnitude;
 
 	// Start is called before the first frame update
 	void Start()
@@ -26,7 +26,7 @@ public class LongRangeEnemyMove : MonoBehaviour
 		var n1 = n;
 		n1 = n1.normalized;
 
-		if (n.magnitude <= magunitude.x)
+		if (n.magnitude <= magnitude.x)
 		{
 			//—£‚ê‚é
 			transform.position += -n1 * speed;
@@ -34,7 +34,7 @@ public class LongRangeEnemyMove : MonoBehaviour
 			transform.rotation = Quaternion.FromToRotation(Vector3.up, -n1);
 		}
 
-		if(n.magnitude >= magunitude.y)
+		if(n.magnitude >= magnitude.y)
 		{
 			//‹ß‚Ã‚­
 			transform.position += n1 * speed;
@@ -42,7 +42,7 @@ public class LongRangeEnemyMove : MonoBehaviour
 			transform.rotation = Quaternion.FromToRotation(Vector3.up, n1);
 		}
 
-		if(n.magnitude < magunitude.y && n.magnitude > magunitude.x)
+		if(n.magnitude < magnitude.y && n.magnitude > magnitude.x)
 		{
 			// ‘ÎÛ•¨‚Ö‰ñ“]‚·‚é
 			transform.rotation = Quaternion.FromToRotation(Vector3.up, n);

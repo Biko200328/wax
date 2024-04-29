@@ -809,6 +809,7 @@ MonoBehaviour:
   moveChangeTime: 1
   enemyHp: {fileID: 1190896466}
   playerObj: {fileID: 0}
+  magnitude: 2
   lookTotalTime: 1
   bikkuri: {fileID: 8824384906377588779, guid: b9d06cc2d6dcc1d49be9e76cfaebd1b2, type: 3}
 --- !u!61 &680651930
@@ -2149,6 +2150,7 @@ MonoBehaviour:
   moveChangeTime: 1
   enemyHp: {fileID: 735950034}
   playerObj: {fileID: 0}
+  magnitude: 3
   lookTotalTime: 1
   bikkuri: {fileID: 8824384906377588779, guid: b9d06cc2d6dcc1d49be9e76cfaebd1b2, type: 3}
 --- !u!50 &1896465188
@@ -2413,7 +2415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.02
-  magunitude: {x: 10, y: 13}
+  magnitude: {x: 10, y: 13}
 --- !u!1 &2037143336
 GameObject:
   m_ObjectHideFlags: 0
