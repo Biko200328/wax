@@ -33,7 +33,7 @@ public class AttackObjMove : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (isBeforeEnemy == false && isMove == false)
+		if (isBeforeEnemy == false)
 		{
 			// 対象物へのベクトルを算出
 			toDirection = playerObj.transform.position - transform.position;
@@ -114,6 +114,12 @@ public class AttackObjMove : MonoBehaviour
 			{
 				EnemyHp enemyHp = collision.transform.GetChild(1).gameObject.GetComponent<EnemyHp>();
 				enemyHp.Damage(1.0f);
+			}
+
+			if(collision.gameObject.tag == "Wall")
+			{
+				isMove = false;
+				time = 0;
 			}
 		}
 	}
