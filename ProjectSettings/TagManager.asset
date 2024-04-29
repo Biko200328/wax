@@ -13,6 +13,7 @@ TagManager:
   - indicatorCol
   - Wall
   - UICanvas
+  - LongRangeEnemy
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Water
   - UI
   - Wax
-  - 
-  - 
+  - Enemy
+  - IndManager
   - 
   - 
   - 

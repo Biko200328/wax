@@ -30,6 +30,11 @@ public class EnemyMove : MonoBehaviour
 	[SerializeField] GameObject bikkuri;
 	GameObject mark;
 
+	//indicator
+	[SerializeField] GameObject indicator;
+	GameObject canvas;
+	[HideInInspector]public GameObject TIObj;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -46,6 +51,13 @@ public class EnemyMove : MonoBehaviour
 		rb.velocity = v;
 
 		playerObj = GameObject.Find("Player");
+
+		//indicator
+		canvas = GameObject.FindGameObjectWithTag("UICanvas");
+		TIObj = Instantiate(indicator, transform.position, Quaternion.identity);
+		TargetIndicator TISqr = TIObj.GetComponent<TargetIndicator>();
+		TISqr.target = this.gameObject;
+		TIObj.transform.SetParent(canvas.transform, false);
 	}
 
 	// Update is called once per frame

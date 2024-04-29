@@ -23,6 +23,12 @@ public class IndManager : MonoBehaviour
 			LongRangeEnemyMove enemySqr = collision.GetComponent<LongRangeEnemyMove>();
 			enemySqr.TIObj.SetActive(false);
 		}
+
+		if (collision.gameObject.tag == "Enemy")
+		{
+			EnemyMove enemySqr = collision.GetComponent<EnemyMove>();
+			enemySqr.TIObj.SetActive(false);
+		}
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)
@@ -32,6 +38,12 @@ public class IndManager : MonoBehaviour
 			LongRangeEnemyMove enemySqr = collision.GetComponent<LongRangeEnemyMove>();
 			enemySqr.TIObj.SetActive(false);
 		}
+
+		if (collision.gameObject.tag == "Enemy")
+		{
+			EnemyMove enemySqr = collision.GetComponent<EnemyMove>();
+			enemySqr.TIObj.SetActive(false);
+		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
@@ -39,6 +51,12 @@ public class IndManager : MonoBehaviour
 		if (collision.gameObject.tag == "LongRangeEnemy")
 		{
 			LongRangeEnemyMove enemySqr = collision.GetComponent<LongRangeEnemyMove>();
+			enemySqr.TIObj.SetActive(true);
+		}
+
+		if (collision.gameObject.tag == "Enemy")
+		{
+			EnemyMove enemySqr = collision.GetComponent<EnemyMove>();
 			enemySqr.TIObj.SetActive(true);
 		}
 	}

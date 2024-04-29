@@ -22,7 +22,7 @@ public class AttackObjMove : MonoBehaviour
 
 	Vector3 toDirection;
 
-	public bool isBeforeEnemy;	
+	public bool isBeforeEnemy;
 
 	// Start is called before the first frame update
 	void Start()
