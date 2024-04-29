@@ -12,6 +12,7 @@ TagManager:
   - indicatorCol2
   - indicatorCol
   - Wall
+  - UICanvas
   layers:
   - Default
   - TransparentFX

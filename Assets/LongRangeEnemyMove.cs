@@ -12,10 +12,20 @@ public class LongRangeEnemyMove : MonoBehaviour
 	[Header("x‚æ‚è‹ß‚¢‚È‚ç—£‚ê‚Ä y‚æ‚è‰“‚¢‚È‚ç‹ß‚Ã‚­")]
 	[SerializeField] Vector2 magnitude;
 
+	[SerializeField] GameObject indicator;
+	GameObject canvas;
+	GameObject TIObj;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		playerObj = GameObject.FindGameObjectWithTag("Player");
+
+		canvas = GameObject.FindGameObjectWithTag("UICanvas");
+		TIObj = Instantiate(indicator, transform.position, Quaternion.identity);
+		TargetIndicator TISqr = TIObj.GetComponent<TargetIndicator>();
+		TISqr.target = this.gameObject;
+		TIObj.transform.SetParent(canvas.transform, false);
 	}
 
 	// Update is called once per frame
