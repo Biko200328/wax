@@ -33,7 +33,7 @@ public class AttackObjMove : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (isBeforeEnemy == false)
+		if (isBeforeEnemy == false && isMove == false)
 		{
 			// 対象物へのベクトルを算出
 			toDirection = playerObj.transform.position - transform.position;
@@ -44,48 +44,50 @@ public class AttackObjMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		//発射
-		if (isMove)
+		if(isWall == false)
 		{
-			time += Time.deltaTime;
-
-			//指定された位置まで移動
-			transform.position = MyEasing.QuartOut(time, totalTime, minPos, movedPos);
-
-			//初期化
-			if (time >= totalTime)
+			//発射
+			if (isMove)
 			{
-				isMove = false;
-				time = 0;
+				time += Time.deltaTime;
+
+				//指定された位置まで移動
+				transform.position = MyEasing.QuartOut(time, totalTime, minPos, movedPos);
+
+				//初期化
+				if (time >= totalTime)
+				{
+					isMove = false;
+					time = 0;
+				}
+			}
+
+			//回収
+			if (isCollect)
+			{
+				time += Time.deltaTime;
+
+				//指定された位置まで移動
+				transform.position = MyEasing.QuartOut(time, totalTime, minPos, playerObj.transform.position);
+
+				//初期化
+				if (time >= totalTime)
+				{
+					isCollect = false;
+					time = 0;
+					Wax waxSqr = GameObject.Find("Gauge").GetComponent<Wax>();
+					waxSqr.RecoveryWax(recoveryNum);
+					Destroy(this.gameObject);
+				}
 			}
 		}
-
-		//回収
-		if(isCollect)
+		else
 		{
-			time += Time.deltaTime;
-
-			//指定された位置まで移動
-			transform.position = MyEasing.QuartOut(time, totalTime, minPos, playerObj.transform.position);
-
-			//初期化
-			if (time >= totalTime)
-			{
-				isCollect = false;
-				time = 0;
-				Wax waxSqr = GameObject.Find("Gauge").GetComponent<Wax>();
-				waxSqr.RecoveryWax(recoveryNum);
-				Destroy(this.gameObject);
-			}
+			time = 0;
+			isMove = false;
+			isCollect = false;
 		}
 	}
-
-	//public static Vector2 QuartOut(float t, float totaltime, Vector2 min, Vector2 max)
-	//{
-	//	max -= min;
-	//	t = t / totaltime - 1;
-	//	return -max * (t * t * t * t - 1) + min;
-	//}
 
 	public void Attack(float t, Vector2 nowPos, Vector2 maxPos)
 	{
@@ -113,31 +115,10 @@ public class AttackObjMove : MonoBehaviour
 				EnemyHp enemyHp = collision.transform.GetChild(1).gameObject.GetComponent<EnemyHp>();
 				enemyHp.Damage(1.0f);
 			}
-
-			if(collision.gameObject.tag == "Wall")
-			{
-				isMove = false;
-				time = 0;
-			}
-		}
-
-		if(isCollect)
-		{
-			if (collision.gameObject.tag == "Wall")
-			{
-				isCollect = false;
-				time = 0;
-			}
 		}
 	}
 
-	public bool GetIsWall()
-	{
-		return isWall;
-	}
-
-
-	public void SetIsWall(bool flag)
+	public void SetisWall(bool flag)
 	{
 		isWall = flag;
 	}
