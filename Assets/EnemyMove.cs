@@ -104,7 +104,11 @@ public class EnemyMove : MonoBehaviour
 					{
 						transform.position += toDirection.normalized * lookSpeed;
 					}
-					
+					else
+					{
+						//timerを進ませて一定周期で攻撃するように
+
+					}
 				}
 			}
 			//プレイヤー未発見時はランダムに動かす
