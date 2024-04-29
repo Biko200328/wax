@@ -110,7 +110,7 @@ public class AttackObjMove : MonoBehaviour
 	{
 		if(isMove)
 		{
-			if(collision.gameObject.tag == "Enemy")
+			if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "LongRangeEnemy")
 			{
 				EnemyHp enemyHp = collision.transform.GetChild(1).gameObject.GetComponent<EnemyHp>();
 				enemyHp.Damage(1.0f);

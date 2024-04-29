@@ -17,6 +17,8 @@ public class LongRangeEnemyMove : MonoBehaviour
 	GameObject canvas;
 	[HideInInspector] public GameObject TIObj;
 
+	[SerializeField] EnemyHp hpSqr;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -33,31 +35,34 @@ public class LongRangeEnemyMove : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		var n = playerObj.transform.position - this.gameObject.transform.position;
-
-		var n1 = n;
-		n1 = n1.normalized;
-
-		if (n.magnitude <= magnitude.x)
+		if(hpSqr.GetIsDead() == false)
 		{
-			//ó£ÇÍÇÈ
-			transform.position += -n1 * speed;
+			var n = playerObj.transform.position - this.gameObject.transform.position;
 
-			transform.rotation = Quaternion.FromToRotation(Vector3.up, -n1);
-		}
+			var n1 = n;
+			n1 = n1.normalized;
 
-		if(n.magnitude >= magnitude.y)
-		{
-			//ãﬂÇ√Ç≠
-			transform.position += n1 * speed;
+			if (n.magnitude <= magnitude.x)
+			{
+				//ó£ÇÍÇÈ
+				transform.position += -n1 * speed;
 
-			transform.rotation = Quaternion.FromToRotation(Vector3.up, n1);
-		}
+				transform.rotation = Quaternion.FromToRotation(Vector3.up, -n1);
+			}
 
-		if(n.magnitude < magnitude.y && n.magnitude > magnitude.x)
-		{
-			// ëŒè€ï®Ç÷âÒì]Ç∑ÇÈ
-			transform.rotation = Quaternion.FromToRotation(Vector3.up, n);
+			if (n.magnitude >= magnitude.y)
+			{
+				//ãﬂÇ√Ç≠
+				transform.position += n1 * speed;
+
+				transform.rotation = Quaternion.FromToRotation(Vector3.up, n1);
+			}
+
+			if (n.magnitude < magnitude.y && n.magnitude > magnitude.x)
+			{
+				// ëŒè€ï®Ç÷âÒì]Ç∑ÇÈ
+				transform.rotation = Quaternion.FromToRotation(Vector3.up, n);
+			}
 		}
 	}
 }

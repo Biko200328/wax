@@ -2710,6 +2710,7 @@ MonoBehaviour:
   magnitude: {x: 10, y: 13}
   indicator: {fileID: 4069404582102766565, guid: c43dc27f9f1b01d4bb8ebfb3b8274db7, type: 3}
   TIObj: {fileID: 0}
+  hpSqr: {fileID: 2037143338}
 --- !u!1 &2037143336
 GameObject:
   m_ObjectHideFlags: 0
