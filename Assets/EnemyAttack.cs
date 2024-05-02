@@ -22,8 +22,10 @@ public class EnemyAttack : MonoBehaviour
 
 	[SerializeField] GameObject sword;
 
-	// Start is called before the first frame update
-	void Start()
+    [SerializeField] EnemyHp enemyHp;
+
+    // Start is called before the first frame update
+    void Start()
 	{
 		playerObj = GameObject.FindGameObjectWithTag("Player");
 	}
@@ -31,48 +33,48 @@ public class EnemyAttack : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(isShake== false && isAttack == false)
+		if(enemyHp.GetIsDead() == false)
 		{
-			sword.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 140);
-		}
+            if (isShake == false && isAttack == false)
+            {
+                sword.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 140);
+            }
 
-		if(isShake)
-		{
-			shakeTimer += Time.deltaTime;
+            if (isShake)
+            {
+                shakeTimer += Time.deltaTime;
 
-			var angle = sword.transform.eulerAngles;
-			angle.z = MyEasing.QuartOut(shakeTimer, shakeTime, transform.eulerAngles.z + 140, transform.eulerAngles.z + 200);
-			sword.transform.eulerAngles = angle;
+                var angle = sword.transform.eulerAngles;
+                angle.z = MyEasing.QuartOut(shakeTimer, shakeTime, transform.eulerAngles.z + 140, transform.eulerAngles.z + 200);
+                sword.transform.eulerAngles = angle;
 
-			if (shakeTimer >= shakeTime)
-			{
-				shakeTimer = 0;
-				isAttack = true;
-			}
-		}
+                if (shakeTimer >= shakeTime)
+                {
+                    shakeTimer = 0;
+                    isAttack = true;
+                    playerPos = playerObj.transform.position;
+                    nowPos = transform.position;
+                }
+            }
 
-		if(isAttack)
-		{
-			timer += Time.deltaTime;
+            if (isAttack)
+            {
+                timer += Time.deltaTime;
 
-			transform.position = MyEasing.QuartOut(timer, totalTime, nowPos, playerPos);
+                transform.position = MyEasing.QuartOut(timer, totalTime, nowPos, playerPos);
 
-			var angle = sword.transform.eulerAngles;
-			angle.z = MyEasing.QuartOut(timer, totalTime, transform.eulerAngles.z + 200, transform.eulerAngles.z + 40);
-			sword.transform.eulerAngles = angle;
+                var angle = sword.transform.eulerAngles;
+                angle.z = MyEasing.QuartOut(timer, totalTime, transform.eulerAngles.z + 200, transform.eulerAngles.z + 40);
+                sword.transform.eulerAngles = angle;
 
-			if (timer >= totalTime)
-			{
-				isAttack = false;
-                isShake = false;
-                timer = 0;
-			}
-		}
-		else
-		{
-			nowPos = transform.position;
-			playerPos = playerObj.transform.position;
-		}
+                if (timer >= totalTime)
+                {
+                    isAttack = false;
+                    isShake = false;
+                    timer = 0;
+                }
+            }
+        }
 	}
 
 	public bool GetIsShake()
@@ -80,7 +82,12 @@ public class EnemyAttack : MonoBehaviour
 		return isShake;
 	}
 
-	public void Attack()
+    public bool GetIsAttack()
+    {
+        return isAttack;
+    }
+
+    public void Attack()
 	{
 		isShake = true;
 		shakeTimer = 0;
