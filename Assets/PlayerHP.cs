@@ -12,6 +12,8 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] float mutekiTime = 1;
     float timer;
 
+    [SerializeField] PlayerMove moveSqr;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +44,7 @@ public class PlayerHP : MonoBehaviour
 
     public void Damage()
     {
-        if(isDamage == false)
+        if(isDamage == false && moveSqr.GetIsDodge() == false)
         {
             isDamage = true;
             timer = 0;

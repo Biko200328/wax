@@ -1,6 +1,3 @@
-using DG.Tweening.Core.Easing;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -13,7 +10,17 @@ public class PlayerMove : MonoBehaviour
 
 	[SerializeField] PlayerCollect playerCollectSqr;
 
+	float vl;
+	float hl;
+
 	public float degree;
+
+	bool isDodge;
+	[SerializeField] float dodgeTime;
+	[SerializeField] float dodgePower;
+	float dTimer;
+	Vector2 nowPos;
+	Vector2 n;
 
 	// Start is called before the first frame update
 	void Start()
@@ -46,31 +53,43 @@ public class PlayerMove : MonoBehaviour
 		}
 
 		//左のアナログスティックが倒れている角度を求める
-		var vl2 = Input.GetAxis("cVerticalL");
-		var hl2 = Input.GetAxis("cHorizontalL");
+		vl = Input.GetAxis("cVerticalL");
+		hl = Input.GetAxis("cHorizontalL");
 
 		//左のアナログスティックが倒れている角度を求める
-		var vr2 = Input.GetAxis("cVerticalR");
-		var hr2 = Input.GetAxis("cHorizontalR");
+		var vr = Input.GetAxis("cVerticalR");
+		var hr = Input.GetAxis("cHorizontalR");
 
-		degree = Mathf.Atan2(vr2, hr2) * Mathf.Rad2Deg;
+		degree = Mathf.Atan2(vr, hr) * Mathf.Rad2Deg;
 
 		if (degree < 0)
 		{
 			degree += 360;
 		}
 
-		if (vr2 == 0 && hr2 == 0)
+		if (vr == 0 && hr == 0)
 		{
 			degree = keepDegree;
 		}
-		else if (vr2 >= 0.1f || vr2 <= -0.1f || hr2 >= 0.1f || hr2 <= -0.1f)
+		else if (vr >= 0.1f || vr <= -0.1f || hr >= 0.1f || hr <= -0.1f)
 		{
 			keepDegree = degree;
 		}
 
-		v.y = vl2 * speed;
-		v.x = hl2 * speed;
+		v.y = vl * speed;
+		v.x = hl * speed;
+
+		if(Input.GetButtonDown("buttonL"))
+		{
+			if(isDodge == false)
+			{
+                isDodge = true;
+                dTimer = 0;
+                nowPos = transform.position;
+                n = new Vector2(hl, vl);
+                n = n.normalized;
+            }
+		}
 
 		//回収中は動けない
 		if(playerCollectSqr.GetIsCollect() == false)
@@ -87,5 +106,24 @@ public class PlayerMove : MonoBehaviour
 		//回転処理
 		worldAngle.z = degree; // ワールド座標を基準に、z軸を軸にした回転をアナログスティックの角度に設定
 		myTransform.eulerAngles = worldAngle; // 回転角度を設定
+	}
+
+	private void FixedUpdate()
+	{
+		if(isDodge)
+		{
+			dTimer += Time.deltaTime;
+			transform.position = MyEasing.QuartOut(dTimer, dodgeTime, nowPos, nowPos + (n * dodgePower));
+			if(dTimer >= dodgeTime)
+			{
+				isDodge = false;
+				dTimer = 0;
+			}
+		}
+	}
+
+	public bool GetIsDodge()
+	{
+		return isDodge;
 	}
 }
