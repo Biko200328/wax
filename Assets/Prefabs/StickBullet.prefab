@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 0
   degree: 0
+  deathTime: 0
 --- !u!58 &7077737160783238816
 CircleCollider2D:
   m_ObjectHideFlags: 0
