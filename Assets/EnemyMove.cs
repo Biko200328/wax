@@ -113,7 +113,7 @@ public class EnemyMove : MonoBehaviour
 					}
 					else
 					{
-						if(attackSqr.GetIsShake() == false)
+						if(attackSqr.GetIsAttackMove() == false)
 						{
                             //timer‚ği‚Ü‚¹‚Äˆê’èüŠú‚ÅUŒ‚‚·‚é‚æ‚¤‚É
                             attackTimer += Time.deltaTime;

@@ -2309,7 +2309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isShake: 0
   isAttack: 0
-  shakeTime: 1
+  shakeTime: 0.4
   totalTime: 1
   sword: {fileID: 1134724456}
   enemyHp: {fileID: 735950034}
