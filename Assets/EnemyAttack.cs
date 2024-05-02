@@ -46,7 +46,6 @@ public class EnemyAttack : MonoBehaviour
 
 			if (shakeTimer >= shakeTime)
 			{
-				isShake = false;
 				shakeTimer = 0;
 				isAttack = true;
 			}
@@ -65,7 +64,8 @@ public class EnemyAttack : MonoBehaviour
 			if (timer >= totalTime)
 			{
 				isAttack = false;
-				timer = 0;
+                isShake = false;
+                timer = 0;
 			}
 		}
 		else
@@ -73,5 +73,17 @@ public class EnemyAttack : MonoBehaviour
 			nowPos = transform.position;
 			playerPos = playerObj.transform.position;
 		}
+	}
+
+	public bool GetIsShake()
+	{
+		return isShake;
+	}
+
+	public void Attack()
+	{
+		isShake = true;
+		shakeTimer = 0;
+		timer = 0;
 	}
 }

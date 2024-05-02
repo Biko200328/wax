@@ -35,8 +35,12 @@ public class EnemyMove : MonoBehaviour
 	GameObject canvas;
 	[HideInInspector]public GameObject TIObj;
 
-	// Start is called before the first frame update
-	void Start()
+	EnemyAttack attackSqr;
+	[SerializeField] float attackTime;
+    float attackTimer;
+
+    // Start is called before the first frame update
+    void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
 
@@ -51,6 +55,9 @@ public class EnemyMove : MonoBehaviour
 		rb.velocity = v;
 
 		playerObj = GameObject.Find("Player");
+
+		attackSqr = GetComponent<EnemyAttack>();
+
 
 		//indicator
 		canvas = GameObject.FindGameObjectWithTag("UICanvas");
@@ -106,8 +113,17 @@ public class EnemyMove : MonoBehaviour
 					}
 					else
 					{
-						//timer‚ði‚Ü‚¹‚Äˆê’èŽüŠú‚ÅUŒ‚‚·‚é‚æ‚¤‚É
+						if(attackSqr.GetIsShake() == false)
+						{
+                            //timer‚ði‚Ü‚¹‚Äˆê’èŽüŠú‚ÅUŒ‚‚·‚é‚æ‚¤‚É
+                            attackTimer += Time.deltaTime;
 
+                            if (attackTimer >= attackTime)
+                            {
+                                attackSqr.Attack();
+								attackTimer = 0;
+                            }
+                        }
 					}
 				}
 			}
@@ -140,7 +156,6 @@ public class EnemyMove : MonoBehaviour
 		{
 			rb.velocity = Vector2.zero;
 		}
-		
 	}
 
 	public void SetIsLook(bool flag)
