@@ -33,14 +33,22 @@ public class EnemyMove : MonoBehaviour
 	//indicator
 	[SerializeField] GameObject indicator;
 	GameObject canvas;
-	[HideInInspector]public GameObject TIObj;
+	[HideInInspector] public GameObject TIObj;
 
 	EnemyAttack attackSqr;
 	[SerializeField] float attackTime;
-    float attackTimer;
+	float attackTimer;
 
-    // Start is called before the first frame update
-    void Start()
+	[SerializeField] bool isStuck;
+	bool isWall;
+	[SerializeField] float wallStuckTime;
+	float wallTimer;
+
+	SpriteRenderer spriteRenderer;
+	Color color;
+
+	// Start is called before the first frame update
+	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
 
@@ -57,6 +65,9 @@ public class EnemyMove : MonoBehaviour
 		playerObj = GameObject.Find("Player");
 
 		attackSqr = GetComponent<EnemyAttack>();
+
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		color = spriteRenderer.color;
 
 
 		//indicator
@@ -81,7 +92,7 @@ public class EnemyMove : MonoBehaviour
 			}
 		}
 
-		if(enemyHp.GetIsDead() == true)
+		if (enemyHp.GetIsDead() == true)
 		{
 			if (mark != null)
 			{
@@ -92,38 +103,38 @@ public class EnemyMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (enemyHp.GetIsDead() == false)
+		if (enemyHp.GetIsDead() == false && isStuck == false && isWall == false)
 		{
 			//ƒvƒŒƒCƒ„[”­Œ©Žž‚Í’ÇÕ‚·‚é
 			if (isLookPlayer)
 			{
 				lookTimer += Time.deltaTime;
 
-				if(lookTimer >= lookTotalTime)
+				if (lookTimer >= lookTotalTime)
 				{
 					isChase = true;
 					Destroy(mark);
 				}
 
-				if(isChase)
+				if (isChase)
 				{
-					if(toDirection.magnitude >= magnitude)
+					if (toDirection.magnitude >= magnitude)
 					{
 						transform.position += toDirection.normalized * lookSpeed;
 					}
 					else
 					{
-						if(attackSqr.GetIsAttackMove() == false)
+						if (attackSqr.GetIsAttackMove() == false)
 						{
-                            //timer‚ði‚Ü‚¹‚Äˆê’èŽüŠú‚ÅUŒ‚‚·‚é‚æ‚¤‚É
-                            attackTimer += Time.deltaTime;
+							//timer‚ði‚Ü‚¹‚Äˆê’èŽüŠú‚ÅUŒ‚‚·‚é‚æ‚¤‚É
+							attackTimer += Time.deltaTime;
 
-                            if (attackTimer >= attackTime)
-                            {
-                                attackSqr.Attack();
+							if (attackTimer >= attackTime)
+							{
+								attackSqr.Attack();
 								attackTimer = 0;
-                            }
-                        }
+							}
+						}
 					}
 				}
 			}
@@ -156,11 +167,23 @@ public class EnemyMove : MonoBehaviour
 		{
 			rb.velocity = Vector2.zero;
 		}
+
+		//•Ç‚ÉS‘©‚³‚ê‚é
+		if (isWall)
+		{
+			wallTimer += Time.deltaTime;
+			if (wallTimer >= wallStuckTime)
+			{
+				isWall = false;
+				wallTimer = 0;
+				spriteRenderer.color = color;
+			}
+		}
 	}
 
 	public void SetIsLook(bool flag)
 	{
-		if(enemyHp.GetIsDead() == false)
+		if (enemyHp.GetIsDead() == false)
 		{
 			isLookPlayer = flag;
 
@@ -190,4 +213,25 @@ public class EnemyMove : MonoBehaviour
 			isLookPlayer = false;
 		}
 	}
+
+	public void SetIsSutck(bool flag)
+	{
+		isStuck = flag;
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Wall")
+		{
+			if (isStuck)
+			{
+				isWall = true;
+				wallTimer = 0;
+				isStuck = false;
+				transform.SetParent(null);
+				spriteRenderer.color = Color.blue;
+			}
+		}
+	}
+
 }

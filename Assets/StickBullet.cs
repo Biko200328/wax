@@ -15,6 +15,11 @@ public class StickBullet : MonoBehaviour
 
 	GameObject playerObj;
 
+	bool isCatch;
+
+	GameObject catchedEnemy;
+	EnemyMove enemyMoveSqr;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -51,10 +56,15 @@ public class StickBullet : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		timer += Time.deltaTime;
-		if(timer >= deathTime)
+		if(isCatch)
 		{
-			//Destroy(this.gameObject);
+			timer += Time.deltaTime;
+			if (timer >= deathTime)
+			{
+				catchedEnemy.transform.SetParent(null);
+				enemyMoveSqr.SetIsSutck(false);
+				Destroy(this.gameObject);
+			}
 		}
 	}
 
@@ -62,7 +72,14 @@ public class StickBullet : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			collision.transform.SetParent(this.gameObject.transform);
+			if(isCatch == false)
+			{
+				catchedEnemy = collision.gameObject;
+				catchedEnemy.transform.SetParent(this.gameObject.transform);
+				enemyMoveSqr = catchedEnemy.GetComponent<EnemyMove>();
+				enemyMoveSqr.SetIsSutck(true);
+				isCatch = true;
+			}
 		}
 	}
 }
