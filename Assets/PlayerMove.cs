@@ -84,7 +84,7 @@ public class PlayerMove : MonoBehaviour
 
 		if (Input.GetButtonDown("buttonL"))
 		{
-			if (isDodge == false)
+			if (isDodge == false && playerCollectSqr.GetIsCollect() == false)
 			{
 				isDodge = true;
 				dTimer = 0;
