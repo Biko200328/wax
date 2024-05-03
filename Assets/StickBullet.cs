@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StickBullet : MonoBehaviour
 {
+	public float bulletSpeedPos;
 	public float bulletSpeed;
 	public float degree;
 
@@ -11,6 +12,8 @@ public class StickBullet : MonoBehaviour
 	float timer;
 
 	Rigidbody2D rb;
+
+	GameObject playerObj;
 
 	// Start is called before the first frame update
 	void Start()
@@ -31,12 +34,19 @@ public class StickBullet : MonoBehaviour
 		worldAngle.z = degree; // ワールド座標を基準に、z軸を軸にした回転をアナログスティックの角度に設定
 		myTransform.eulerAngles = worldAngle; // 回転角度を設定
 
-		var v = rb.velocity;
+		var pos = transform.position;
 
-		//向いている方向に移動
-		v = gameObject.transform.rotation * new Vector3(bulletSpeed, 0, 0);
-		
-		rb.velocity = v;
+		pos += gameObject.transform.rotation * new Vector3(bulletSpeedPos, 0, 0);
+
+		transform.position = pos;
+
+		//var v = rb.velocity;
+
+		////向いている方向に移動
+		//v = gameObject.transform.rotation * new Vector3(bulletSpeed, 0, 0);
+
+		//rb.velocity = v;
+
 	}
 
 	private void FixedUpdate()
@@ -44,7 +54,15 @@ public class StickBullet : MonoBehaviour
 		timer += Time.deltaTime;
 		if(timer >= deathTime)
 		{
-			Destroy(this.gameObject);
+			//Destroy(this.gameObject);
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Enemy")
+		{
+			collision.transform.SetParent(this.gameObject.transform);
 		}
 	}
 }

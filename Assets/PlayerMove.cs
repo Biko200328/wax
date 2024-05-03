@@ -29,6 +29,7 @@ public class PlayerMove : MonoBehaviour
 	void Start()
 	{
 		afterImage = GetComponent<StaticAfterImageEffect2DPlayer>();
+		afterImage.SetActive(false);
 	}
 
 	// Update is called once per frame
