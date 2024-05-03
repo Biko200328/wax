@@ -1,3 +1,4 @@
+using AIE2D;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -22,10 +23,12 @@ public class PlayerMove : MonoBehaviour
 	Vector2 nowPos;
 	Vector2 n;
 
+	StaticAfterImageEffect2DPlayer afterImage;
+
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		afterImage = GetComponent<StaticAfterImageEffect2DPlayer>();
 	}
 
 	// Update is called once per frame
@@ -35,7 +38,7 @@ public class PlayerMove : MonoBehaviour
 
 		var v = rb.velocity;
 
-		if(Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.A))
 		{
 			v.x = -speed;
 		}
@@ -79,20 +82,21 @@ public class PlayerMove : MonoBehaviour
 		v.y = vl * speed;
 		v.x = hl * speed;
 
-		if(Input.GetButtonDown("buttonL"))
+		if (Input.GetButtonDown("buttonL"))
 		{
-			if(isDodge == false)
+			if (isDodge == false)
 			{
-                isDodge = true;
-                dTimer = 0;
-                nowPos = transform.position;
-                n = new Vector2(hl, vl);
-                n = n.normalized;
-            }
+				isDodge = true;
+				dTimer = 0;
+				nowPos = transform.position;
+				n = new Vector2(hl, vl);
+				n = n.normalized;
+				afterImage.SetActive(true);
+			}
 		}
 
 		//‰ñŽû’†‚Í“®‚¯‚È‚¢
-		if(playerCollectSqr.GetIsCollect() == false)
+		if (playerCollectSqr.GetIsCollect() == false)
 		{
 			rb.velocity = v;
 		}
@@ -110,14 +114,15 @@ public class PlayerMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if(isDodge)
+		if (isDodge)
 		{
 			dTimer += Time.deltaTime;
 			transform.position = MyEasing.QuartOut(dTimer, dodgeTime, nowPos, nowPos + (n * dodgePower));
-			if(dTimer >= dodgeTime)
+			if (dTimer >= dodgeTime)
 			{
 				isDodge = false;
 				dTimer = 0;
+				afterImage.SetActive(false);
 			}
 		}
 	}
