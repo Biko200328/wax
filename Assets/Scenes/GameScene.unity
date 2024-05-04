@@ -1335,6 +1335,11 @@ MonoBehaviour:
   degree: 0
   dodgeTime: 0.5
   dodgePower: 5
+  isConsume: 0
+  consumeNum: 1
+  createTime: 3
+  waxObj: {fileID: 862417585606669441, guid: a4eb8ffd84d5b2c4fbdf77581f6afb21, type: 3}
+  wax: {fileID: 1704883480}
 --- !u!212 &554766532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1440,7 +1445,7 @@ MonoBehaviour:
   coolTime: 0.4
   attackPos: {x: 1, y: 1.5}
   attackNum: 20
-  reduceNum: 10
+  reduceNum: 20
   attackObj: {fileID: 862417585606669441, guid: a4eb8ffd84d5b2c4fbdf77581f6afb21, type: 3}
   baseObj: {fileID: 2093109523}
   waxSqr: {fileID: 1704883480}
@@ -1457,7 +1462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectTime: 1
-  recoveryNum: 0.5
+  recoveryNum: 1
   sptite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   gauge: {fileID: 2133317927}
 --- !u!58 &554766537
@@ -3048,8 +3053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988040b3ce535b542a25750c9df009a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nowWax: 100
-  maxWax: 100
+  nowWax: 160
+  maxWax: 160
 --- !u!1 &1713038947
 GameObject:
   m_ObjectHideFlags: 0

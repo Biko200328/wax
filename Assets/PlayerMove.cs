@@ -1,4 +1,5 @@
 using AIE2D;
+using System;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -19,11 +20,19 @@ public class PlayerMove : MonoBehaviour
 	bool isDodge;
 	[SerializeField] float dodgeTime;
 	[SerializeField] float dodgePower;
+	[SerializeField] bool isConsume;
+	[SerializeField] float consumeNum;
+	[SerializeField] float createTime;
+	[SerializeField] GameObject waxObj;
+	[SerializeField] Wax wax;
+	float createTimer;
 	float dTimer;
 	Vector2 nowPos;
 	Vector2 n;
 
 	StaticAfterImageEffect2DPlayer afterImage;
+
+	
 
 	// Start is called before the first frame update
 	void Start()
@@ -85,7 +94,7 @@ public class PlayerMove : MonoBehaviour
 
 		if (Input.GetButtonDown("buttonL"))
 		{
-			if (isDodge == false && playerCollectSqr.GetIsCollect() == false)
+			if (isDodge == false && playerCollectSqr.GetIsCollect() == false && wax.HaveWax() == true)
 			{
 				isDodge = true;
 				dTimer = 0;
@@ -118,12 +127,25 @@ public class PlayerMove : MonoBehaviour
 		if (isDodge)
 		{
 			dTimer += Time.deltaTime;
+
 			transform.position = MyEasing.QuartOut(dTimer, dodgeTime, nowPos, nowPos + (n * dodgePower));
+
 			if (dTimer >= dodgeTime)
 			{
 				isDodge = false;
 				dTimer = 0;
 				afterImage.SetActive(false);
+			}
+
+			if(isConsume == true)
+			{
+				createTimer++;
+				if (createTimer >= createTime)
+				{
+					Instantiate(waxObj, transform.position, Quaternion.identity);
+					wax.ReduceWax(consumeNum);
+					createTimer = 0;
+				}
 			}
 		}
 	}
