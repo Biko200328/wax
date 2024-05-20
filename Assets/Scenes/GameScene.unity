@@ -1335,7 +1335,7 @@ MonoBehaviour:
   degree: 0
   dodgeTime: 0.5
   dodgePower: 5
-  isConsume: 0
+  isConsume: 1
   consumeNum: 1
   createTime: 3
   waxObj: {fileID: 862417585606669441, guid: a4eb8ffd84d5b2c4fbdf77581f6afb21, type: 3}
@@ -4114,7 +4114,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.02
+  bulletSpeed: 18
+  interval: 100
   magnitude: {x: 8, y: 10}
+  bulletObj: {fileID: 6938724297288493589, guid: c19cd3ace5f9a1d4e9b8fcd7a2283312, type: 3}
   indicator: {fileID: 4069404582102766565, guid: c43dc27f9f1b01d4bb8ebfb3b8274db7, type: 3}
   TIObj: {fileID: 0}
   hpSqr: {fileID: 2037143338}

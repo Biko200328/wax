@@ -9,8 +9,17 @@ public class LongRangeEnemyMove : MonoBehaviour
 	[Header("ˆÚ“®‘¬“x")]
 	[SerializeField] float speed;
 
+	[Header("’e‚Ì‘¬“x")]
+	[SerializeField] float bulletSpeed;
+
+	[Header("”­ŽËŠÔŠu")]
+	[SerializeField] float interval;
+	float timer;
+
 	[Header("x‚æ‚è‹ß‚¢‚È‚ç—£‚ê‚Ä y‚æ‚è‰“‚¢‚È‚ç‹ß‚Ã‚­")]
 	[SerializeField] Vector2 magnitude;
+
+	public GameObject bulletObj;
 
 	//indicator
 	[SerializeField] GameObject indicator;
@@ -48,6 +57,8 @@ public class LongRangeEnemyMove : MonoBehaviour
 				transform.position += -n1 * speed;
 
 				transform.rotation = Quaternion.FromToRotation(Vector3.up, -n1);
+
+				timer = 0;
 			}
 
 			if (n.magnitude >= magnitude.y)
@@ -56,12 +67,24 @@ public class LongRangeEnemyMove : MonoBehaviour
 				transform.position += n1 * speed;
 
 				transform.rotation = Quaternion.FromToRotation(Vector3.up, n1);
+
+				timer = 0;
 			}
 
 			if (n.magnitude < magnitude.y && n.magnitude > magnitude.x)
 			{
 				// ‘ÎÛ•¨‚Ö‰ñ“]‚·‚é
 				transform.rotation = Quaternion.FromToRotation(Vector3.up, n);
+
+				timer++;
+
+				if(timer >= interval)
+				{
+					enemyBullet bulletSqr = Instantiate(bulletObj, transform.position, Quaternion.identity).GetComponent<enemyBullet>();
+					bulletSqr.speed = bulletSpeed;
+
+					timer = 0;
+				}
 			}
 		}
 	}
