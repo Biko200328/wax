@@ -2209,7 +2209,7 @@ MonoBehaviour:
   moveChangeTime: 1
   enemyHp: {fileID: 735950034}
   playerObj: {fileID: 0}
-  magnitude: 5
+  magnitude: 4.5
   lookTotalTime: 1
   bikkuri: {fileID: 8824384906377588779, guid: b9d06cc2d6dcc1d49be9e76cfaebd1b2, type: 3}
   indicator: {fileID: 4069404582102766565, guid: c43dc27f9f1b01d4bb8ebfb3b8274db7, type: 3}
