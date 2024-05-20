@@ -122,6 +122,10 @@ public class EnemyMove : MonoBehaviour
 					{
 						transform.position += toDirection.normalized * lookSpeed;
 					}
+					else if(toDirection.magnitude <= magnitude - 1)
+					{
+						transform.position -= toDirection.normalized * lookSpeed;
+					}
 					else
 					{
 						if (attackSqr.GetIsAttackMove() == false)
