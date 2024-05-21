@@ -129,6 +129,7 @@ public class AttackObjMove : MonoBehaviour
 				EnemyShield enemyShield = collision.GetComponent<EnemyShield>();
 				enemyShield.isDefence = true;
 				enemyShield.timer = 0;
+				enemyShield.Damage();
 			}
 		}
 	}

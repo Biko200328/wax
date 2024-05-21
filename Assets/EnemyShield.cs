@@ -8,10 +8,17 @@ public class EnemyShield : MonoBehaviour
 	[SerializeField] float defenceTime;
 	public float timer;
 
+	[SerializeField] float maxHp;
+	[SerializeField] float nowHp;
+
+	bool isDamage;
+	[SerializeField] float damageTime;
+	float damageTimer;
+
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		nowHp = maxHp;
 	}
 
 	// Update is called once per frame
@@ -28,6 +35,30 @@ public class EnemyShield : MonoBehaviour
 			if(timer >= defenceTime)
 			{
 				isDefence = false;
+			}
+		}
+
+		if(isDamage)
+		{
+			damageTimer++;
+			if(damageTimer >= damageTime)
+			{
+				isDamage = false;
+				damageTimer = 0;
+			}
+		}
+	}
+
+	public void Damage()
+	{
+		if(isDamage == false)
+		{
+			nowHp--;
+			isDamage = true;
+			if (nowHp <= 0)
+			{
+				isDefence = false;
+				Destroy(this.gameObject);
 			}
 		}
 	}

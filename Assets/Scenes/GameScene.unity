@@ -344,6 +344,9 @@ MonoBehaviour:
   isDefence: 0
   defenceTime: 0
   timer: 0
+  maxHp: 0
+  nowHp: 0
+  damageTime: 0
 --- !u!61 &170267544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1757,6 +1760,9 @@ MonoBehaviour:
   isDefence: 0
   defenceTime: 10
   timer: 0
+  maxHp: 10
+  nowHp: 0
+  damageTime: 18
 --- !u!61 &873412411
 BoxCollider2D:
   m_ObjectHideFlags: 0
