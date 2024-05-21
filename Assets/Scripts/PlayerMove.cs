@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
 	[SerializeField] float speed;
+	[SerializeField] float shieldSpeed;
+	float s = 0;
 
 	[SerializeField] Rigidbody2D rb;
 
@@ -33,6 +35,7 @@ public class PlayerMove : MonoBehaviour
 	StaticAfterImageEffect2DPlayer afterImage;
 
 	[SerializeField]GameObject shield;
+	bool isShield;
 
 	// Start is called before the first frame update
 	void Start()
@@ -46,23 +49,32 @@ public class PlayerMove : MonoBehaviour
 	{
 		rb.velocity = Vector2.zero;
 
+		if (isShield)
+		{
+			s = shieldSpeed;
+		}
+		else
+		{
+			s = speed;
+		}
+
 		var v = rb.velocity;
 
 		if (Input.GetKey(KeyCode.A))
 		{
-			v.x = -speed;
+			v.x = -s;
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
-			v.x = speed;
+			v.x = s;
 		}
 		if (Input.GetKey(KeyCode.W))
 		{
-			v.y = speed;
+			v.y = s;
 		}
 		if (Input.GetKey(KeyCode.S))
 		{
-			v.y = -speed;
+			v.y = -s;
 		}
 
 		//左のアナログスティックが倒れている角度を求める
@@ -89,8 +101,9 @@ public class PlayerMove : MonoBehaviour
 			keepDegree = degree;
 		}
 
-		v.y = vl * speed;
-		v.x = hl * speed;
+		v.y = vl * s;
+		v.x = hl * s;
+
 
 		if (Input.GetButtonDown("buttonA"))
 		{
@@ -108,10 +121,12 @@ public class PlayerMove : MonoBehaviour
 		if (Input.GetButtonDown("buttonL"))
 		{
 			shield.SetActive(true);
+			isShield = true;
 		}
 		if(Input.GetButtonUp("buttonL"))
 		{
 			shield.SetActive(false);
+			isShield = false;
 		}
 
 		//回収中は動けない

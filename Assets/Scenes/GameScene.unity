@@ -1064,12 +1064,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  shieldSpeed: 3
   rb: {fileID: 554766534}
   playerCollectSqr: {fileID: 554766536}
   degree: 0
   dodgeTime: 0.5
   dodgePower: 5
-  isConsume: 1
+  isConsume: 0
   consumeNum: 1
   createTime: 3
   waxObj: {fileID: 862417585606669441, guid: a4eb8ffd84d5b2c4fbdf77581f6afb21, type: 3}
