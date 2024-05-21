@@ -32,7 +32,7 @@ public class PlayerMove : MonoBehaviour
 
 	StaticAfterImageEffect2DPlayer afterImage;
 
-	
+	[SerializeField]GameObject shield;
 
 	// Start is called before the first frame update
 	void Start()
@@ -103,6 +103,15 @@ public class PlayerMove : MonoBehaviour
 				n = n.normalized;
 				afterImage.SetActive(true);
 			}
+		}
+
+		if (Input.GetButtonDown("buttonL"))
+		{
+			shield.SetActive(true);
+		}
+		if(Input.GetButtonUp("buttonL"))
+		{
+			shield.SetActive(false);
 		}
 
 		//‰ñŽû’†‚Í“®‚¯‚È‚¢
