@@ -121,6 +121,15 @@ public class AttackObjMove : MonoBehaviour
 				isMove = false;
 				time = 0;
 			}
+
+			if (collision.gameObject.tag == "EnemyShield")
+			{
+				isMove = false;
+				time = 0;
+				EnemyShield enemyShield = collision.GetComponent<EnemyShield>();
+				enemyShield.isDefence = true;
+				enemyShield.timer = 0;
+			}
 		}
 	}
 

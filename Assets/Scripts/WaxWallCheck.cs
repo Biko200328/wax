@@ -26,11 +26,19 @@ public class WaxWallCheck : MonoBehaviour
 		{
 			attackObjSqr.SetisWall(true);
 		}
+		if (collision.gameObject.tag == "EnemyShield")
+		{
+			attackObjSqr.SetisWall(true);
+		}
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "Wall")
+		{
+			attackObjSqr.SetisWall(true);
+		}
+		if (collision.gameObject.tag == "EnemyShield")
 		{
 			attackObjSqr.SetisWall(true);
 		}
@@ -40,6 +48,10 @@ public class WaxWallCheck : MonoBehaviour
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "Wall")
+		{
+			attackObjSqr.SetisWall(false);
+		}
+		if (collision.gameObject.tag == "EnemyShield")
 		{
 			attackObjSqr.SetisWall(false);
 		}

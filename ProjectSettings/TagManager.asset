@@ -14,6 +14,7 @@ TagManager:
   - Wall
   - UICanvas
   - LongRangeEnemy
+  - EnemyShield
   layers:
   - Default
   - TransparentFX
