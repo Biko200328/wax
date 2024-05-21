@@ -10,7 +10,7 @@ public class AttackObjMove : MonoBehaviour
 	float totalTime;
 	float time;
 
-	bool isMove;
+	public bool isMove;
 
 	bool isCollect;
 

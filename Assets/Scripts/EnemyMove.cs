@@ -47,6 +47,8 @@ public class EnemyMove : MonoBehaviour
 	SpriteRenderer spriteRenderer;
 	Color color;
 
+	[SerializeField] EnemyShield shield;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -103,7 +105,7 @@ public class EnemyMove : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (enemyHp.GetIsDead() == false && isStuck == false && isWall == false)
+		if (enemyHp.GetIsDead() == false && isStuck == false && isWall == false && shield.isDefence == false)
 		{
 			//ÉvÉåÉCÉÑÅ[î≠å©éûÇÕí«ê’Ç∑ÇÈ
 			if (isLookPlayer)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 743969729882765296}
   - component: {fileID: 7527683846289089331}
   - component: {fileID: 7579596612554411063}
+  - component: {fileID: 5120564628387947046}
   m_Layer: 6
   m_Name: attackObj
   m_TagString: wax
@@ -113,8 +114,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065575ff58ccb9145bc15e91eaaa29ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMove: 0
   isWall: 0
   isBeforeEnemy: 0
+--- !u!50 &5120564628387947046
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862417585606669441}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2066740274203370644
 GameObject:
   m_ObjectHideFlags: 0

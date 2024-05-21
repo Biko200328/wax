@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour
 		v.y = vl * speed;
 		v.x = hl * speed;
 
-		if (Input.GetButtonDown("buttonL"))
+		if (Input.GetButtonDown("buttonA"))
 		{
 			if (isDodge == false && playerCollectSqr.GetIsCollect() == false && wax.HaveWax() == true)
 			{
